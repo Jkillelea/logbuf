@@ -13,7 +13,7 @@ typedef enum
     ERROR = 2,
 } log_level_t;
 
-static log_level_t current_level = ERROR;
+static log_level_t current_level = INFO;
 static char logbuffer[LOG_MAX] = {};
 static struct ringbuffer buf;
 
@@ -31,7 +31,7 @@ static void do_log(log_level_t level, const char *const fmt, ...)
     // TODO: we should use a ring buffer here. Keep the size static and just
     // overwrite. To do that we will probably need a separate buffer for each log
     // message and then we will append them to a ring buffer.
-    len = (size_t)snprintf(logbuffer, LOG_MAX, fmt, list);
+    len = (size_t)snprintf(logbuffer, sizeof(logbuffer), fmt, list);
 
     va_end(list);
 
@@ -46,6 +46,7 @@ static void do_log(log_level_t level, const char *const fmt, ...)
 
 static void flush_buffer(void)
 {
+    printf("Dumping log buffer:\n");
     while (ringbuffer_remove(&buf, logbuffer, sizeof(logbuffer)) > 0)
     {
         printf("%s\n", logbuffer);
