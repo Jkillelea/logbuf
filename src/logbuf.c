@@ -35,13 +35,15 @@ static void flush_buffer(void) {}
 
 // Error logs trigger a flush of the logging buffer
 void error(const char *const fmt, ...) {
+  // In an error situation, we want to see what was happening before
+  flush_buffer();
+
   va_list list;
   va_start(list, fmt);
-  log(ERROR, fmt, list);
-  va_end(list);
 
-  // Print the entire buffer
-  flush_buffer();
+  log(ERROR, fmt, list);
+
+  va_end(list);
 }
 
 void info(const char *const fmt, ...) {
