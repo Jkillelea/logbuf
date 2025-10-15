@@ -17,7 +17,7 @@ static log_level_t current_level = ERROR;
 static char logbuffer[LOG_MAX] = {};
 static struct ringbuffer buf;
 
-static void log(log_level_t level, const char *const fmt, ...)
+static void do_log(log_level_t level, const char *const fmt, ...)
 {
     if (!buf.buffer)
     {
@@ -62,7 +62,7 @@ void error(const char *const fmt, ...)
     va_list list;
     va_start(list, fmt);
 
-    log(ERROR, fmt, list);
+    do_log(ERROR, fmt, list);
 
     va_end(list);
 }
@@ -72,7 +72,7 @@ void info(const char *const fmt, ...)
     va_list list;
     va_start(list, fmt);
 
-    log(INFO, fmt, list);
+    do_log(INFO, fmt, list);
 
     va_end(list);
 }
@@ -82,7 +82,7 @@ void debug(const char *const fmt, ...)
     va_list list;
     va_start(list, fmt);
 
-    log(DEBUG, fmt, list);
+    do_log(DEBUG, fmt, list);
 
     va_end(list);
 }
