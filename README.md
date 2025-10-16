@@ -27,6 +27,7 @@ void useful_function(int action)
         if (action == 0)
         {
             error("An error occurred");
+            abort();
         }
         action++;
     }
