@@ -24,9 +24,9 @@ void useful_function(int action)
     while (true)
     {
         debug("action: %d\n", action);
-        if (action == 0)
+        if (action == 99)
         {
-            error("An error occurred");
+            error("An error occurred!\n");
             abort();
         }
         action++;
