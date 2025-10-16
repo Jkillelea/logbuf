@@ -1,13 +1,19 @@
 #ifndef LOGBUF_H_
 #define LOGBUF_H_
 
+// Use these macros for logging
+
 // Error logs trigger a flush of the logging buffer
-void error(const char *const fmt, ...);
-
+#define error(...) do_error("[ERROR]: " __VA_ARGS__)
 // Normal message
-void info(const char *const fmt, ...);
-
+#define info(...) do_info("[INFO]: " __VA_ARGS__)
 // Verbose debugging message
-void debug(const char *const fmt, ...);
+#define debug(...) do_debug("[DEBUG]: " __VA_ARGS__)
+
+void do_error(const char *const fmt, ...);
+
+void do_info(const char *const fmt, ...);
+
+void do_debug(const char *const fmt, ...);
 
 #endif // LOGBUF_H_

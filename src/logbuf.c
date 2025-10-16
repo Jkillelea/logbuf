@@ -1,3 +1,4 @@
+#include "logbuf.h"
 #include "ringbuffer.h"
 #include <stdarg.h>
 #include <stdint.h>
@@ -55,7 +56,7 @@ static void flush_buffer(void)
 }
 
 // Error logs trigger a flush of the logging buffer
-void error(const char *const fmt, ...)
+void do_error(const char *const fmt, ...)
 {
     // In an error situation, we want to see what was happening before
     flush_buffer();
@@ -68,7 +69,7 @@ void error(const char *const fmt, ...)
     va_end(list);
 }
 
-void info(const char *const fmt, ...)
+void do_info(const char *const fmt, ...)
 {
     va_list list;
     va_start(list, fmt);
@@ -78,7 +79,7 @@ void info(const char *const fmt, ...)
     va_end(list);
 }
 
-void debug(const char *const fmt, ...)
+void do_debug(const char *const fmt, ...)
 {
     va_list list;
     va_start(list, fmt);
