@@ -18,23 +18,14 @@ static log_level_t current_level = INFO;
 static char logbuffer[LOG_MAX] = {};
 static struct ringbuffer buf;
 
-static void do_log(log_level_t level, const char *const fmt, ...)
+static void do_log(log_level_t level, const char *const fmt, va_list list)
 {
     if (!buf.buffer)
     {
         buf = ringbuffer_alloc(4096);
     }
 
-    size_t len = 0;
-    va_list list;
-    va_start(list, fmt);
-
-    // TODO: we should use a ring buffer here. Keep the size static and just
-    // overwrite. To do that we will probably need a separate buffer for each log
-    // message and then we will append them to a ring buffer.
-    len = (size_t)snprintf(logbuffer, sizeof(logbuffer), fmt, list);
-
-    va_end(list);
+    size_t len = vsnprintf(logbuffer, sizeof(logbuffer), fmt, list);
 
     // Don't append null terminator
     ringbuffer_append(&buf, logbuffer, len);
