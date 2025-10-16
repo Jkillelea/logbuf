@@ -41,13 +41,14 @@ int main()
     struct timespec start = {};
     clock_gettime(CLOCK_MONOTONIC, &start);
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++)
+    {
         struct timespec now = {};
         debug("Getting the time\n");
         clock_gettime(CLOCK_MONOTONIC, &now);
         debug("Got the time: %ld\n", now.tv_sec);
 
-        info("Elapsed: %ld\n", ((unsigned long) now.tv_sec - (unsigned long) start.tv_sec));
+        info("Elapsed: %ld\n", ((unsigned long)now.tv_sec - (unsigned long)start.tv_sec));
         sleep(1);
     }
 
