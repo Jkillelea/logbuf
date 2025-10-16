@@ -14,4 +14,22 @@ debugging messages that led up to this error.
 
 ## Usage
 
-Usage is simple. TBD!
+Usage is simple.
+
+```c
+void useful_function(int action)
+{
+    info("useful_function called with action: %d\n", action);
+
+    while (true)
+    {
+        debug("action: %d\n", action);
+        if (action == 0)
+        {
+            error("An error occurred");
+        }
+        action++;
+    }
+}
+
+```
