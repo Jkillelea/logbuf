@@ -72,7 +72,7 @@ ssize_t ringbuffer_remove(struct ringbuffer *buffer, char *const str, const size
         return -1;
     }
 
-    while (buffer->remove_idx != buffer->append_idx)
+    while ((buffer->remove_idx != buffer->append_idx) && nread < len)
     {
         str[nread] = buffer->buffer[buffer->remove_idx];
         buffer->remove_idx = (buffer->remove_idx + 1) % buffer->capacity;
