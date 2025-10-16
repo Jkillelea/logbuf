@@ -1,6 +1,6 @@
-target_sources(logbuf
+target_sources(retrospective
     PUBLIC FILE_SET HEADERS
     FILES
-        logbuf.h
+        retrospective.h
         ringbuffer.h
 )

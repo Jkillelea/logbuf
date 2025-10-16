@@ -1,5 +1,5 @@
-add_library(logbuf
-    logbuf.c
+add_library(retrospective
+    retrospective.c
     ringbuffer.c
 )
 

@@ -1,4 +1,4 @@
-#include "logbuf.h"
+#include "retrospective.h"
 #include "ringbuffer.h"
 #include <stdarg.h>
 #include <stdint.h>
@@ -50,7 +50,7 @@ static void flush_buffer(void)
     printf("Dumping log buffer:\n");
     while (ringbuffer_remove(&buf, logbuffer, sizeof(logbuffer)) > 0)
     {
-        printf("%s\n", logbuffer);
+        printf("%s", logbuffer);
         memset(logbuffer, 0, sizeof(logbuffer));
     }
 }
