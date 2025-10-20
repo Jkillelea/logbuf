@@ -4,7 +4,7 @@ _A simple logging library that lets you look back_
 
 ## Motivation
 
-Most naiive logging libraries force you to make a tradeoff. Either disable debugging
+Most logging libraries force you to make a tradeoff: either disable debugging
 messages and only get the most urgent error messages, or enable all logging and drown
 under an ocean of debugging information. `retrospective` attempts to change that paradigm
 by maintaining a buffer that all messages are logged into, even if they're not printed.
